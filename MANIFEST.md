@@ -1,13 +1,14 @@
 # SBoxDrive Cryptographic Manifest
 ### Complete Session Artifact Inventory & SHA-256 Digest
-**Authority:** `MCORE-FDR-AIS-001` | **Generated:** 2026-11-12 23:27:21 UTC
-**Total Tracked Artifacts:** 24 | **Total Size:** 125,242 bytes
+**Authority:** `MCORE-FDR-AIS-001` | **Generated:** 2026-11-12 23:34:33 UTC
+**Total Tracked Artifacts:** 25 | **Total Size:** 130,365 bytes
 
 | File | Purpose | Size (Bytes) | SHA-256 Checksum |
 |---|---|---|---|
 | `.gitignore` | Git ignore rules for caches and temporary artifacts | 288 | `3962a7e67db7049ca9289b7e50a20a01d20213436207577a14c9d893030c26c3` |
 | `README.md` | Repository master landing page and architecture overview | 4,187 | `e0332b229c47055b21d73cb0a794dd5bb3bc56d21c4f862dc0129fd65de280f3` |
 | `docs/ARTIFACT_INVENTORY.md` | Master File | Purpose inventory documentation | 6,084 | `1dc8352dbd9e25df15645ad92493e6f3d54e8c858f59d3222386a1bc1d2a37f5` |
+| `docs/UNIFIED_AI_EXPORT_PROMPT.md` | SBoxDrive project artifact | 5,123 | `b107c36547853264d59a578c794cebe3def0cceb5ac47839af23f4e07e37f33d` |
 | `docs/UNIFIED_DRIVE_SPECIFICATION.md` | Specification for unified drive and multi-project hierarchy | 2,704 | `2880eabcb3a3ed65687beaee6fca36f5216d62fe7cbbf4f84c8fab811fb56364` |
 | `docs/canonical/AIS_MCORE_SUCCESS_CHRONICLE.md` | Chronicle of architectural breakthroughs and milestones | 6,886 | `37db956edb81c14fe15e891da746049fb582d5c7478f5d36b71dc196b82befdb` |
 | `docs/canonical/DAILY_WORK_CONFIRMATION_2026-11-12.md` | Daily operational confirmation of systemd services and DNS | 4,717 | `c4f4ab2275154b1874f909a24b4910e2742d7dea192818e070b4d74e8e217959` |

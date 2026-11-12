@@ -1,9 +1,9 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-11-12T23:27:21.903169+00:00",
+  "generated_at": "2026-11-12T23:34:33.517942+00:00",
   "authority": "MCORE-FDR-AIS-001",
-  "total_files": 24,
-  "total_size_bytes": 125242,
+  "total_files": 25,
+  "total_size_bytes": 130365,
   "artifacts": [
     {
       "path": ".gitignore",
@@ -22,6 +22,12 @@
       "purpose": "Master File | Purpose inventory documentation",
       "size_bytes": 6084,
       "sha256": "1dc8352dbd9e25df15645ad92493e6f3d54e8c858f59d3222386a1bc1d2a37f5"
+    },
+    {
+      "path": "docs/UNIFIED_AI_EXPORT_PROMPT.md",
+      "purpose": "SBoxDrive project artifact",
+      "size_bytes": 5123,
+      "sha256": "b107c36547853264d59a578c794cebe3def0cceb5ac47839af23f4e07e37f33d"
     },
     {
       "path": "docs/UNIFIED_DRIVE_SPECIFICATION.md",
