@@ -1,0 +1,12 @@
+{
+  "attestation_id": "attest-netproof-20261112-232528",
+  "generated_at": "2026-11-12T23:25:28.723258+00:00",
+  "node_id": "nativebox-ais001.mcoreai.dev",
+  "route_state_hash": "e57e2c321a86c154b1b35aaa57d7b0e6ca08f1acfe4ad539579196b5407602db",
+  "total_probes": 7,
+  "reachable_probes": 3,
+  "critical_failures": 1,
+  "status": "QUENCH_REQUIRED",
+  "authority": "MCORE-FDR-AIS-001",
+  "proof_signature": "8c63526e73bbcd50024f5f3a7bc2b07d3487647b5dfc07db61c9ab60a08d0630"
+}

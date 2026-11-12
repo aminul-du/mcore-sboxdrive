@@ -1,0 +1,49 @@
+# NetProof360 Engine Configuration
+version: "1.0.0"
+environment: "production-sovereign"
+node_id: "nativebox-ais001.mcoreai.dev"
+
+engine:
+  mode: "continuous-attestation"
+  sampling_interval_seconds: 15
+  cryptographic_hash: "sha256"
+  signature_algorithm: "hmac-sha256"
+
+thresholds:
+  max_acceptable_rtt_ms: 25.0
+  max_jitter_ms: 5.0
+  packet_loss_tolerance_pct: 0.00
+  route_divergence_action: "QUENCH_AND_ALERT"
+
+probes:
+  - id: "probe-internal-mcoresec-api"
+    target: "127.0.0.1:8000"
+    protocol: "HTTP/1.1"
+    criticality: "HIGH"
+  - id: "probe-internal-mte"
+    target: "127.0.0.1:8001"
+    protocol: "HTTP/1.1"
+    criticality: "CRITICAL"
+  - id: "probe-terminal-ai"
+    target: "127.0.0.1:8002"
+    protocol: "HTTP/1.1"
+    criticality: "MEDIUM"
+  - id: "probe-cloudflared-tunnel"
+    target: "127.0.0.1:2000"
+    protocol: "QUIC/METRICS"
+    criticality: "HIGH"
+
+ai_threat_ingest:
+  providers:
+    - name: "deepseek-ai"
+      enabled: true
+      data_format: "threat-heuristics-json"
+      ingest_path: "docs/DEEPSEEK_RESEARCH_INGEST.md"
+    - name: "gemini-vertex"
+      enabled: true
+      data_format: "saii-attestation-schema"
+
+evidence:
+  output_dir: "evidence"
+  retention_days: 90
+  auto_register_manifest: true
