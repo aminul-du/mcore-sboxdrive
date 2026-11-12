@@ -1,0 +1,57 @@
+# MCoreNetproof360 Declarative Configuration
+version: "1.1.0"
+authority: "MCORE-FDR-AIS-001"
+zones:
+  Z2:
+    name: "Sandbox"
+    desc: "WSL + Cloudflare Tunnel"
+  Z3:
+    name: "Evidence"
+    desc: "Isolated (no-egress)"
+
+services:
+  - id: "emulator-router"
+    zone: "Z2"
+    port: 8000
+    path: "/health"
+    critical: true
+  - id: "rag-controller"
+    zone: "Z2"
+    port: 8001
+    path: "/health"
+    critical: true
+  - id: "memory-agent"
+    zone: "Z2"
+    port: 8002
+    path: "/health"
+    critical: true
+  - id: "write-screen"
+    zone: "Z2"
+    port: 8003
+    path: "/health"
+    critical: true
+  - id: "rag-shield"
+    zone: "Z2"
+    port: 8004
+    path: "/health"
+    critical: true
+  - id: "predictive-engine"
+    zone: "Z2"
+    port: 8005
+    path: "/health"
+    critical: true
+  - id: "human-gate"
+    zone: "Z2"
+    port: 8006
+    path: "/health"
+    critical: false
+  - id: "evidence-vault"
+    zone: "Z3"
+    port: 8007
+    path: "/health"
+    critical: true
+
+database:
+  url_env: "DATABASE_URL"
+  default_url: "postgres://mcoreai:mcoreai@localhost:5432/mcoreai"
+  image: "pgvector/pgvector:pg16"

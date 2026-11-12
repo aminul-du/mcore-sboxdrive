@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCore NetProof360 | 3D Operational Topology</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #080a0f;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", monospace;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+    #canvas-container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .hud {
+      position: absolute;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .hud-header {
+      top: 24px;
+      left: 28px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      color: #00f0ff;
+      margin-bottom: 8px;
+    }
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00f0ff;
+      box-shadow: 0 0 8px #00f0ff;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    }
+    .subtitle {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 4px;
+      font-family: monospace;
+    }
+    .stats-panel {
+      bottom: 24px;
+      left: 28px;
+      display: flex;
+      gap: 16px;
+    }
+    .stat-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+      border-radius: 8px;
+      padding: 12px 18px;
+      min-width: 140px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .stat-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #00ff88;
+      margin-top: 4px;
+      font-family: monospace;
+    }
+    .node-panel {
+      top: 24px;
+      right: 28px;
+      width: 340px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: 10px;
+      padding: 18px;
+      pointer-events: auto;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+    }
+    .node-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      padding-bottom: 8px;
+    }
+    .service-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(51, 65, 85, 0.3);
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: monospace;
+    }
+    .service-name {
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .service-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .service-rtt {
+      color: #38bdf8;
+    }
+    .status-pill {
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .status-ok { background: rgba(0, 255, 136, 0.15); color: #00ff88; border: 1px solid rgba(0, 255, 136, 0.4); }
+    .status-down { background: rgba(255, 51, 102, 0.15); color: #ff3366; border: 1px solid rgba(255, 51, 102, 0.4); }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <div class="hud hud-header">
+    <div class="badge"><span class="badge-dot"></span> SAII 2050 Zero-Gap Telemetry</div>
+    <h1>MCore NetProof360 Topology</h1>
+    <div class="subtitle">AUTHORITY: MCORE-FDR-AIS-001 | BARE-METAL & CLOUDFLARE EDGE</div>
+  </div>
+
+  <div class="hud stats-panel">
+    <div class="stat-card">
+      <div class="stat-label">System Verdict</div>
+      <div class="stat-value" id="hud-verdict">SOVEREIGN</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Monitored Nodes</div>
+      <div class="stat-value" id="hud-total">8 Services</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Evidence Store</div>
+      <div class="stat-value" style="color: #00f0ff;">PG + pgvector</div>
+    </div>
+  </div>
+
+  <div class="hud node-panel">
+    <div class="node-title">
+      <span>Service Grid Telemetry</span>
+      <span style="font-size: 10px; color: #94a3b8;" id="hud-time">LIVE</span>
+    </div>
+    <div id="services-list"></div>
+  </div>
+
+  <script>
+    const services = [
+      { id: "emulator-router", zone: "Z2", port: 8000, critical: true, ok: true, rtt: 1.69, sha: "0250b7248759" },
+      { id: "rag-controller", zone: "Z2", port: 8001, critical: true, ok: false, rtt: 0.31, sha: "2bc9342f9df1" },
+      { id: "memory-agent", zone: "Z2", port: 8002, critical: true, ok: false, rtt: 0.20, sha: "e99adae07fd6" },
+      { id: "write-screen", zone: "Z2", port: 8003, critical: true, ok: false, rtt: 0.20, sha: "95e6092cfc57" },
+      { id: "rag-shield", zone: "Z2", port: 8004, critical: true, ok: false, rtt: 0.38, sha: "ce541a58c4b4" },
+      { id: "predictive-engine", zone: "Z2", port: 8005, critical: true, ok: false, rtt: 0.40, sha: "3845af7b63c8" },
+      { id: "human-gate", zone: "Z2", port: 8006, critical: false, ok: false, rtt: 0.17, sha: "f4f03a219528" },
+      { id: "evidence-vault", zone: "Z3", port: 8007, critical: true, ok: false, rtt: 0.13, sha: "be7af9add949" }
+    ];
+
+    function updateServiceList() {
+      const container = document.getElementById("services-list");
+      container.innerHTML = "";
+      services.forEach(s => {
+        const row = document.createElement("div");
+        row.className = "service-row";
+        row.innerHTML = `
+          <div>
+            <div class="service-name">${s.id}</div>
+            <div style="font-size: 10px; color: #64748b;">:${s.port} (${s.zone})</div>
+          </div>
+          <div class="service-meta">
+            <span class="service-rtt">${s.rtt}ms</span>
+            <span class="status-pill ${s.ok ? 'status-ok' : 'status-down'}">${s.ok ? 'HEALTHY' : 'DOWN'}</span>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+    updateServiceList();
+
+    // Three.js Setup
+    const container = document.getElementById("canvas-container");
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x080a0f, 0.015);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 25, 45);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxDistance = 120;
+    controls.minDistance = 10;
+
+    // Grid Floor
+    const grid = new THREE.GridHelper(80, 40, 0x00f0ff, 0x1e293b);
+    grid.position.y = -10;
+    scene.add(grid);
+
+    // Central Vault Core (PostgreSQL Evidence Store)
+    const coreGeo = new THREE.IcosahedronGeometry(4, 2);
+    const coreMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff, wireframe: true });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    scene.add(coreMesh);
+
+    const coreInnerGeo = new THREE.SphereGeometry(2.5, 16, 16);
+    const coreInnerMat = new THREE.MeshBasicMaterial({ color: 0x00ff88 });
+    const coreInner = new THREE.Mesh(coreInnerGeo, coreInnerMat);
+    scene.add(coreInner);
+
+    // Nodes Ring
+    const nodeMeshes = [];
+    const radius = 22;
+    services.forEach((s, idx) => {
+      const angle = (idx / services.length) * Math.PI * 2;
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
+      const y = (idx % 2 === 0 ? 2 : -2);
+
+      const nodeGeo = new THREE.SphereGeometry(1.6, 16, 16);
+      const color = s.ok ? 0x00ff88 : (s.critical ? 0xff3366 : 0xffaa00);
+      const nodeMat = new THREE.MeshBasicMaterial({ color: color });
+      const node = new THREE.Mesh(nodeGeo, nodeMat);
+      node.position.set(x, y, z);
+      scene.add(node);
+      nodeMeshes.push(node);
+
+      // Connecting Beam to Core
+      const points = [new THREE.Vector3(x, y, z), new THREE.Vector3(0, 0, 0)];
+      const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
+      const lineMat = new THREE.LineBasicMaterial({ color: s.ok ? 0x00ff88 : 0x334155, opacity: 0.6, transparent: true });
+      const line = new THREE.Line(lineGeo, lineMat);
+      scene.add(line);
+    });
+
+    // Animation Loop
+    function animate() {
+      requestAnimationFrame(animate);
+      coreMesh.rotation.y += 0.005;
+      coreMesh.rotation.x += 0.002;
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

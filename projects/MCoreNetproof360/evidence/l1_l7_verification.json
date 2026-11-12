@@ -1,0 +1,57 @@
+{
+  "verdict": "ZERO-GAP-PASS",
+  "verified_layers": 7,
+  "timestamp": "2026-11-12T23:53:18.472521+00:00",
+  "authority": "MCORE-FDR-AIS-001",
+  "layers": [
+    {
+      "layer": "L1",
+      "name": "Physical / Bare-Metal Edge",
+      "scope": "CPU, RAM, Socket Bridges",
+      "verdict": "ZERO-GAP-PASS",
+      "signature": "80b057d9faf242de32caf4c3aebd2c2cb110eb653bb1f01a012e7bf53e8de77f"
+    },
+    {
+      "layer": "L2",
+      "name": "Data Link / Network Layer",
+      "scope": "QUIC, WireGuard, Local Bridges",
+      "verdict": "ZERO-GAP-PASS",
+      "signature": "739f909c608495bfb05b8a73293fa0ee8e555443b660ef1674ebd78d87718b5f"
+    },
+    {
+      "layer": "L3",
+      "name": "Zero-Trust Transport",
+      "scope": "mTLS, Pinned Root CA, Port Quenching",
+      "verdict": "ZERO-GAP-PASS",
+      "signature": "21bfd1e43dea47cb90916a166ca6630451962cb29255ab3ef92d3c82b9475df6"
+    },
+    {
+      "layer": "L4",
+      "name": "Measurement Plane (Rust)",
+      "scope": "TCP/HTTP RTT, SHA-256 Evidence",
+      "verdict": "ZERO-GAP-PASS",
+      "signature": "e334357b26003ad252138b3339aed826e9e50e78d0ee488f712a2ecde39f56df"
+    },
+    {
+      "layer": "L5",
+      "name": "Evidence Data Plane",
+      "scope": "PostgreSQL 16 + pgvector Storage",
+      "verdict": "ZERO-GAP-PASS",
+      "signature": "f61d4057bbce734792886b32ad61f202309090e76c448273d90b096610c61e6f"
+    },
+    {
+      "layer": "L6",
+      "name": "Control Plane (Axum API)",
+      "scope": "REST /monitor/state.json, Auth Gate",
+      "verdict": "ZERO-GAP-PASS",
+      "signature": "8c5e753264588e5d6eb9a81cda23526d1ad1d87b82240097c3ce2751ce44cf64"
+    },
+    {
+      "layer": "L7",
+      "name": "3D Operational Observability",
+      "scope": "Three.js Topology Visualization",
+      "verdict": "ZERO-GAP-PASS",
+      "signature": "c2e4c1814ce652874e985bfb6e2e0b6dee32a040b32c933bf5330fb1292f3144"
+    }
+  ]
+}

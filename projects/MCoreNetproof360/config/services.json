@@ -1,0 +1,12 @@
+{
+  "services": [
+    { "id": "emulator-router", "zone": "Z2", "port": 8000, "path": "/health", "critical": true },
+    { "id": "rag-controller", "zone": "Z2", "port": 8001, "path": "/health", "critical": true },
+    { "id": "memory-agent", "zone": "Z2", "port": 8002, "path": "/health", "critical": true },
+    { "id": "write-screen", "zone": "Z2", "port": 8003, "path": "/health", "critical": true },
+    { "id": "rag-shield", "zone": "Z2", "port": 8004, "path": "/health", "critical": true },
+    { "id": "predictive-engine", "zone": "Z2", "port": 8005, "path": "/health", "critical": true },
+    { "id": "human-gate", "zone": "Z2", "port": 8006, "path": "/health", "critical": false },
+    { "id": "evidence-vault", "zone": "Z3", "port": 8007, "path": "/health", "critical": true }
+  ]
+}

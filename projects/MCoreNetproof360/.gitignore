@@ -1,0 +1,28 @@
+# Secrets
+.env
+*.pem
+*.key
+*.crt
+secrets/
+
+# Build Artifacts
+target/
+node_modules/
+dist/
+build/
+*.log
+__pycache__/
+*.pyc
+
+# Local Databases
+*.db
+*.sqlite
+
+# OS/Editor
+.DS_Store
+.idea/
+.vscode/
+
+# Runtime Output
+output/
+logs/

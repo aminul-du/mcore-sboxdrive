@@ -1,7 +1,7 @@
 # SBoxDrive Cryptographic Manifest
 ### Complete Session Artifact Inventory & SHA-256 Digest
-**Authority:** `MCORE-FDR-AIS-001` | **Generated:** 2026-11-12 23:34:33 UTC
-**Total Tracked Artifacts:** 25 | **Total Size:** 130,365 bytes
+**Authority:** `MCORE-FDR-AIS-001` | **Generated:** 2026-11-12 23:53:27 UTC
+**Total Tracked Artifacts:** 50 | **Total Size:** 179,131 bytes
 
 | File | Purpose | Size (Bytes) | SHA-256 Checksum |
 |---|---|---|---|
@@ -18,6 +18,31 @@
 | `docs/canonical/MCORE_STARTUP_SECURITY_GOVERNANCE_DOSSIER.md` | Enterprise DevSecOps, predictive memory security, and Hack23 matrices | 19,157 | `ea0bbffccda3919c65436f5bb60bb8e857ffd3a141ce285ff4efd8cd7a8d580f` |
 | `docs/canonical/SAII_2050_EXECUTION_BASELINE.md` | Master 18-plane SAII 2050 Zero-Gap execution baseline | 8,197 | `6eccf74c844a0da2219789455d319adbd079bec36d3a005e836aeae562f69aa0` |
 | `docs/canonical/mcore-state.yaml` | Operational system state and port mapping | 469 | `e97848e59f2656f552d27261ea50e37a9c1978f73befc4054ddb3997d339a1e3` |
+| `projects/MCoreNetproof360/.env.example` | SBoxDrive project artifact | 105 | `20f751a018cc42bd5f575d256ad952489fe3fcb0a428e113fc815c211ec2bc98` |
+| `projects/MCoreNetproof360/.gitignore` | SBoxDrive project artifact | 225 | `5d4a5906f742c8dbd498a6281bf146538dfed234b25601c9cd834a0806621ade` |
+| `projects/MCoreNetproof360/MANIFEST.md` | SBoxDrive project artifact | 2,653 | `b75c170bed47852c5061deddeb53cdfed2617e3149667362d72d4aeca0c1966b` |
+| `projects/MCoreNetproof360/README.md` | SBoxDrive project artifact | 2,232 | `408a77c74e8f48d7c5cb45a711a13bff27d24b48eaa41698da1bdf4cd4acc8df` |
+| `projects/MCoreNetproof360/config/netproof.config.yaml` | SBoxDrive project artifact | 1,116 | `032f10e0870f116d8a43c2328532ff202ddc5f13667890bbf2e4358d5a7bf91a` |
+| `projects/MCoreNetproof360/config/services.json` | SBoxDrive project artifact | 792 | `bb103aa543f85d6aef2303b206bcec6d4039d1cd75c9fa496edb428575ac9063` |
+| `projects/MCoreNetproof360/docs/AI_RESEARCH_INGEST.md` | SBoxDrive project artifact | 560 | `851c7d6002c2ec0984583b91d432a27cc26e573f997f54ae57f8a2229fcf1d91` |
+| `projects/MCoreNetproof360/docs/ARCHITECTURE.md` | SBoxDrive project artifact | 1,142 | `db37c88052fa44e8814c7e76362f9bc15deb215fb73648a8a1999b99a7af9bd6` |
+| `projects/MCoreNetproof360/docs/ARTIFACT_INVENTORY.md` | SBoxDrive project artifact | 2,070 | `a1b8aad0c382d9cca9f48eed111d4c769e9204dceaccb1213feebf8545d26ed0` |
+| `projects/MCoreNetproof360/docs/THREAT_MODEL.md` | SBoxDrive project artifact | 713 | `fc685ea9656f94f01671499cacfd46c467907d2168cba755643287a19a7ea5c3` |
+| `projects/MCoreNetproof360/evidence/l1_l7_verification.json` | SBoxDrive project artifact | 1,882 | `345ddb0d9105fb88631d4d2ffee16dec9f18c50e5c2da10b5909a1c042e9f374` |
+| `projects/MCoreNetproof360/evidence/measurements_snapshot.json` | SBoxDrive project artifact | 2,518 | `7933b1ed56ec9b588f5178dac796b1f7de0111f1ea592e60b10569daa7659bfd` |
+| `projects/MCoreNetproof360/manifest.json` | SBoxDrive project artifact | 3,220 | `bd2d6c53ec877fea8bac60a374879ec66d4756fdc20414de07d4918bb18d747d` |
+| `projects/MCoreNetproof360/scripts/bootstrap-project.sh` | SBoxDrive project artifact | 1,871 | `57299b3981dc590e699f8b04ed6f2a914e8357cde1a03b6e73d24426237a14b7` |
+| `projects/MCoreNetproof360/scripts/generate-manifest.sh` | SBoxDrive project artifact | 1,852 | `e31324b9fc8f2a259c362354d2d90668efba564e3a78be00a3f887cc4c8ad828` |
+| `projects/MCoreNetproof360/src/collector.py` | SBoxDrive project artifact | 4,768 | `9d4a3dc5b66b1377db2001b0642546b32b41e48fe5e1355bcf52d5bc21920820` |
+| `projects/MCoreNetproof360/src/manifest_hook.py` | SBoxDrive project artifact | 1,113 | `5a592af1573e1cb4e2d2d966af955c0548662a652acf75a5d5208af286381639` |
+| `projects/MCoreNetproof360/src/rust/Cargo.toml` | SBoxDrive project artifact | 72 | `d3e5bee9e914822cd5248f8a8117d86e68603926cb6f1dd0cfe4c3afc5bd00ee` |
+| `projects/MCoreNetproof360/src/rust/apps/api/Cargo.toml` | SBoxDrive project artifact | 377 | `b5e5c19fbde78390660854b6eced924e9b50a0636ff7052f03c7f75e9ccf5e4d` |
+| `projects/MCoreNetproof360/src/rust/apps/api/src/main.rs` | SBoxDrive project artifact | 2,189 | `e863086d48ca6d557e8749cc838bc39ac01b234cdd3f07d2e9718ed684559f21` |
+| `projects/MCoreNetproof360/src/rust/crates/measurement/Cargo.toml` | SBoxDrive project artifact | 483 | `7b6152b4980cb4048f662f836a54c5b37f3e14d9404a27b3fe26757ad3ff57cf` |
+| `projects/MCoreNetproof360/src/rust/crates/measurement/src/main.rs` | SBoxDrive project artifact | 3,513 | `ab7207ab13b5aea5da3c52434672c1283396277210db3f1fac2eac400f0698d9` |
+| `projects/MCoreNetproof360/src/rust/migrations/20231112000000_init.sql` | SBoxDrive project artifact | 716 | `3cc3607dfeea7b5899232a3f6b0062f8dde12dcb4e30ef170bf9f9400b60b47f` |
+| `projects/MCoreNetproof360/src/verifier.py` | SBoxDrive project artifact | 2,744 | `73c722480385fee5d530849203452219412c63a6e6cf767ba9090319f2786727` |
+| `projects/MCoreNetproof360/src/web/mcore-monitor-3d.html` | SBoxDrive project artifact | 9,840 | `a6d9527f377a3d03b64d205c488947e5a8465e5397e15de174bcde06eae56a3f` |
 | `projects/project-A-NetProof360/ARCHITECTURE.md` | NetProof360 4-layer verification pipeline specification | 2,016 | `4726c50182ff91fae70dd4dfe7fbe4830e663fccac524d1d67a5a3824d9d3a47` |
 | `projects/project-A-NetProof360/README.md` | Project-A NetProof360 mission and usage guide | 2,420 | `95df5f0da99d4dc99171273e4302bc7281809ff82cf49526fec7d02fe5eae017` |
 | `projects/project-A-NetProof360/config/netproof.config.yaml` | NetProof360 thresholds and synthetic probe targets | 1,232 | `3f92de66cbe3bcf52948b203277ef5cb3cc4842567613ca5167c25da9fbc6f1c` |
